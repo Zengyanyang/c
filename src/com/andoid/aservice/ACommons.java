@@ -7,4 +7,5 @@ package com.andoid.aservice;
 public class ACommons {
 	/**是否为测试**/
 	public static final boolean isTest = true;
+	public static final String host = "";
 }
