@@ -1,8 +1,7 @@
 package com.andoid.aservice.mode;
 
-import cn.trinea.android.common.util.SingletonUtils;
 
-public class FadebackInfo extends SingletonUtils<FadebackInfo>{
+public class FadebackInfo{
 
 	private String packageName;
 	private int version;
@@ -44,10 +43,5 @@ public class FadebackInfo extends SingletonUtils<FadebackInfo>{
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	@Override
-	protected FadebackInfo newInstance() {
-		// TODO Auto-generated method stub
-		return new FadebackInfo();
-	}
-
+	
 }

@@ -14,6 +14,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 import cn.trinea.android.common.util.ShellUtils.CommandResult;
 
@@ -421,6 +422,33 @@ public class PackageUtils {
             e.printStackTrace();
         }
         return false;
+    }
+    
+    /***
+     * 判断是否存在该应用
+     * @param mContext
+     * @param packageName
+     * @return
+     */
+    public static boolean isExistApplication(Context mContext,String packageName)
+    {
+    	if(mContext == null || TextUtils.isEmpty(packageName))
+    	{
+    		return false;
+    	}
+    	try
+    	{
+    		 ApplicationInfo app = mContext.getPackageManager().getApplicationInfo(packageName, 0);
+    		 if(app != null)
+    		 {
+    			 return true;
+    		 }
+    	}
+    	catch(NameNotFoundException e)
+    	{
+    		 e.printStackTrace();
+    	}
+    	return false;
     }
 
     /**

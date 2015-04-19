@@ -1,38 +1,47 @@
 package com.andoid.aservice.mode;
 
+
+import android.content.Context;
+import cn.trinea.android.common.util.ShellUtils;
+
 import com.andoid.aservice.ACommons;
 
-import cn.trinea.android.common.util.ShellUtils;
-import cn.trinea.android.common.util.SingletonUtils;
-
-public class DeviceInfo extends SingletonUtils<DeviceInfo> {
-	
-	private String imei;
-	private String uuid;
-	private int version;
-	private String netType;
-	private String channel;
+public class DeviceInfo  {
+	public String imei;
+	public String uuid;
+	public int version;
+	public String netType;
+	public String channel;
 	/**是否平板*/
-	private boolean isTablet;
-	private String macAddress;
-	private String systemVersion;
-	private String sdkVersion;
+	public boolean isTablet;
+	public String macAddress;
+	public String systemVersion;
+	public String sdkVersion;
 	/**设置型号**/
-	private String model;
+	public String model;
 	/**系统语言**/
-	private String language;
+	public String language;
 	/**分辨率**/
-	private String resolution;
+	public String resolution;
 	/**屏幕大小**/
-	private String size;
+	public String size;
 	/**ram大小**/
-	private String ram;
-	private String rom;
-	private boolean hasSim;
-	private boolean isUpdateDeviceInfo;
-	private boolean isRoot;
-	private String email;
-	private boolean isTest;
+	public String ram;
+	public String rom;
+	public boolean hasSim;
+	public boolean isUpdateDeviceInfo;
+	public boolean isRoot;
+	public String email;
+	public boolean isTest;
+	
+	/**
+	 * 初始化字段
+	 * @param mContext
+	 */
+	public void initData(Context mContext)
+	{
+		
+	}
 	
 	public String getImei() {
 		return imei;
@@ -185,11 +194,6 @@ public class DeviceInfo extends SingletonUtils<DeviceInfo> {
 
 	public boolean isTest() {
 		return ACommons.isTest;
-	}
-
-	@Override
-	protected DeviceInfo newInstance() {
-		return new DeviceInfo();
 	}
 	
 }

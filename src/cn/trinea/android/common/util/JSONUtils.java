@@ -1,5 +1,6 @@
 package cn.trinea.android.common.util;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -817,5 +818,39 @@ public class JSONUtils {
             }
             return null;
         }
+    }
+    
+    public static JSONObject convertObj2JSON(Object obj)
+    {
+    	if(obj == null)
+    	{
+    		return null;
+    	}
+    	
+    	Class clz = obj.getClass();
+    	Field[] fds = clz.getDeclaredFields();
+    	if(fds.length == 0)
+    	{
+    		return null;
+    	}
+    	try
+    	{
+    		String fName;
+        	JSONObject result = new JSONObject();
+        	for(Field f:fds)
+        	{
+        		fName = f.getName();
+        		if(f.isAccessible())
+        		result.put(fName, f.get(obj));
+        	}
+        	return result;
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    	}
+    	
+    	
+    	return null;
     }
 }

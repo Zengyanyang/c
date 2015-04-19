@@ -28,7 +28,10 @@ import cn.trinea.android.common.util.HttpUtils;
 public class HttpRequest {
 
     private String              url;
-    private int                 connectTimeout;
+    private String 				method;
+    private int                 type = 0;
+
+	private int                 connectTimeout;
     private int                 readTimeout;
     private Map<String, String> parasMap;
     private Map<String, String> requestProperties;
@@ -52,6 +55,15 @@ public class HttpRequest {
         return url;
     }
 
+    
+    public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+	
     /**
      * @return
      * @see URLConnection#getConnectTimeout()
@@ -114,6 +126,14 @@ public class HttpRequest {
     public String getParas() {
         return HttpUtils.joinParasWithEncodedValue(parasMap);
     }
+    
+    public String getMethod() {
+		return method;
+	}
+
+	public void setMethod(String method) {
+		this.method = method;
+	}
 
     /**
      * @param field

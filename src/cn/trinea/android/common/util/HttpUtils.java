@@ -82,6 +82,7 @@ public class HttpUtils {
             URL url = new URL(request.getUrl());
             try {
                 HttpResponse response = new HttpResponse(request.getUrl());
+                response.setType(request.getType());
                 // default gzip encode
                 con = (HttpURLConnection)url.openConnection();
                 setURLConnection(request, con);
@@ -205,6 +206,7 @@ public class HttpUtils {
             URL url = new URL(request.getUrl());
             try {
                 HttpResponse response = new HttpResponse(request.getUrl());
+                response.setType(request.getType());
                 // default gzip encode
                 con = (HttpURLConnection)url.openConnection();
                 setURLConnection(request, con);
@@ -520,6 +522,10 @@ public class HttpUtils {
         protected HttpResponse doInBackground(HttpRequest... httpRequest) {
             if (ArrayUtils.isEmpty(httpRequest)) {
                 return null;
+            }
+            if("post".equals(httpRequest[0].getMethod()))
+            {
+            	return httpPost(httpRequest[0]);
             }
             return httpGet(httpRequest[0]);
         }

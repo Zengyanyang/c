@@ -9,11 +9,11 @@ package cn.trinea.android.common.util;
  */
 public abstract class SingletonUtils<T> {
 
-    private static T instance;
+    private T instance;
 
     protected abstract T newInstance();
 
-    public static final T getInstance() {
+    public  final T getInstance() {
         if (instance == null) {
             synchronized (SingletonUtils.class) {
                 if (instance == null) {
