@@ -1,7 +1,7 @@
 package cn.trinea.android.common.util;
 
 import java.lang.reflect.Method;
-
+import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Request;
 import android.database.Cursor;
@@ -36,6 +36,7 @@ import android.os.Build;
  * 
  * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2013-5-4
  */
+@SuppressLint("NewApi")
 public class DownloadManagerPro {
 
     public static final Uri    CONTENT_URI                 = Uri.parse("content://downloads/my_downloads");
@@ -57,6 +58,14 @@ public class DownloadManagerPro {
 
     public DownloadManagerPro(DownloadManager downloadManager) {
         this.downloadManager = downloadManager;
+    }
+    
+    /**下载文件**/
+    public long downFile(String path)
+    {
+    	DownloadManager.Request request = new DownloadManager.Request(Uri.parse(path));
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
+        return downloadManager.enqueue(request);
     }
 
     /**

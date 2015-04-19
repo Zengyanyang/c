@@ -1,5 +1,7 @@
 package cn.trinea.android.common.util;
 
+import com.andoid.aservice.db.AppInfoDb;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -26,6 +28,7 @@ public class DbHelper extends SQLiteOpenHelper {
             db.execSQL(DbConstants.CREATE_HTTP_CACHE_TABLE_SQL.toString());
             db.execSQL(DbConstants.CREATE_HTTP_CACHE_TABLE_INDEX_SQL.toString());
             db.execSQL(DbConstants.CREATE_HTTP_CACHE_TABLE_UNIQUE_INDEX.toString());
+            db.execSQL(DbConstants.CREATE_APPINFO_TABLE_SQL.toString());
             db.setTransactionSuccessful();
         } finally {
             db.endTransaction();
@@ -33,5 +36,16 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    	if(oldVersion < newVersion)
+    	{
+    		db.execSQL("delete table " + DbConstants.IMAGE_SDCARD_CACHE_TABLE_TABLE_NAME);
+    		db.execSQL("delete table " + DbConstants.HTTP_CACHE_TABLE_TABLE_NAME);
+    		db.execSQL("delete table " + AppInfoDb.TB);
+    	}
+    	else
+    	{
+    		onCreate(db);
+    	}
+    }
 }

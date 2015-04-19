@@ -1,5 +1,8 @@
 package cn.trinea.android.common.constant;
 
+import com.andoid.aservice.db.AppInfoDb;
+import com.andoid.aservice.mode.AppInfo;
+
 /**
  * Some constants about db
  * 
@@ -63,6 +66,7 @@ public class DbConstants {
     public static final int          HTTP_CACHE_TABLE_CREATE_TIME_INDEX            = 4;
     public static final int          HTTP_CACHE_TABLE_TYPE_INDEX                   = 5;
 
+    public static final StringBuffer CREATE_APPINFO_TABLE_SQL					   = new StringBuffer();
     static {
         /**
          * sql to image sdcard cache table
@@ -105,6 +109,24 @@ public class DbConstants {
         CREATE_HTTP_CACHE_TABLE_INDEX_SQL.append("CREATE INDEX ").append(HTTP_CACHE_TABLE_INDEX_TYPE).append(" ON ")
                 .append(HTTP_CACHE_TABLE_TABLE_NAME).append("(").append(HTTP_CACHE_TABLE_TYPE).append(")")
                 .append(TERMINATOR);
+        
+        /**AppInfo相关数据库**/
+        CREATE_APPINFO_TABLE_SQL.append("Create table ").append(AppInfoDb.TB);
+        CREATE_APPINFO_TABLE_SQL.append(" (").append("_id integer primary key autoincrement,");
+        String clm = "";
+        for(int i = 0 ; i < AppInfoDb.CLOUM.length ; i++)
+        {
+        	if(i < AppInfoDb.CLOUM.length - 1)
+        	{
+        		CREATE_APPINFO_TABLE_SQL.append(clm).append(" text,");
+        	}
+        	else
+        	{
+        		CREATE_APPINFO_TABLE_SQL.append(clm).append(" text)");
+        	}
+        }
+        
+        
 
     }
 }
